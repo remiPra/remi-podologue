@@ -1,8 +1,9 @@
 ---
-// Fichier Astro avec stratégie responsive avancée
+// Fichier Astro avec stratégie responsive avancée et icônes
 
 export const prerender = true;
 import "../styles/global.css";
+import { Icon } from 'astro-icon/components';
 
 const siteData = {
   title: "Rémi Pradère - Pédicure-Podologue à Condom",
@@ -15,17 +16,29 @@ const siteData = {
     phoneUrl: "tel:0562682580"
   },
   services: [
-    { icon: "✂️", title: "Soins de Pédicurie", fullDesc: "Coupe d'ongles professionnelle, traitement des cors, durillons et verrues plantaires. Soins complets du pied dans un environnement stérilisé." },
-    { icon: "👣", title: "Semelles Orthopédiques", fullDesc: "Conception et réalisation de semelles orthopédiques thermoformées sur mesure pour corriger les troubles posturaux et améliorer votre confort." },
-    { icon: "🩺", title: "Bilans Podologiques", fullDesc: "Analyses posturales complètes, examens approfondis de la marche et évaluations biomécaniques personnalisées." }
+    { 
+      icon: "mdi:foot-print", 
+      title: "Soins de Pédicurie", 
+      fullDesc: "Coupe d'ongles professionnelle, traitement des cors, durillons et verrues plantaires. Soins complets du pied dans un environnement stérilisé." 
+    },
+    { 
+      icon: "mdi:shoe-formal", 
+      title: "Semelles Orthopédiques", 
+      fullDesc: "Conception et réalisation de semelles orthopédiques thermoformées sur mesure pour corriger les troubles posturaux et améliorer votre confort." 
+    },
+    { 
+      icon: "mdi:stethoscope", 
+      title: "Bilans Podologiques", 
+      fullDesc: "Analyses posturales complètes, examens approfondis de la marche et évaluations biomécaniques personnalisées." 
+    }
   ],
   specializedServices: [
-    { icon: "🦶", title: "Pathologies Unguéales", desc: "Traitement spécialisé des ongles incarnés, mycoses et déformations des ongles." },
-    { icon: "⚕️", title: "Troubles Statiques", desc: "Correction des pieds plats, creux, hallux valgus et autres déformations." },
-    { icon: "🛠️", title: "Orthoplasties", desc: "Appareillages en silicone sur mesure pour protéger et corriger." },
-    { icon: "💊", title: "Prescriptions", desc: "Médicaments topiques et chaussures thérapeutiques adaptées." },
-    { icon: "👶", title: "Podologie Pédiatrique", desc: "Suivi spécialisé du développement du pied chez l'enfant." },
-    { icon: "🏃", title: "Podologie Sportive", desc: "Optimisation des performances et prévention des blessures sportives." }
+    { icon: "mdi:foot-print", title: "Pathologies Unguéales", desc: "Traitement spécialisé des ongles incarnés, mycoses et déformations des ongles." },
+    { icon: "mdi:bone", title: "Troubles Statiques", desc: "Correction des pieds plats, creux, hallux valgus et autres déformations." },
+    { icon: "mdi:bandage", title: "Orthoplasties", desc: "Appareillages en silicone sur mesure pour protéger et corriger." },
+    { icon: "mdi:pill", title: "Prescriptions", desc: "Médicaments topiques et chaussures thérapeutiques adaptées." },
+    { icon: "mdi:baby", title: "Podologie Pédiatrique", desc: "Suivi spécialisé du développement du pied chez l'enfant." },
+    { icon: "mdi:run", title: "Podologie Sportive", desc: "Optimisation des performances et prévention des blessures sportives." }
   ],
   contact: {
     address: "4 Rue Honoré Cazaubon",
@@ -51,23 +64,77 @@ const siteData = {
 <body class="bg-slate-900 font-inter text-slate-800">
 
   <main>
-    <section class="snap-section h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
-      <div class="absolute inset-0 opacity-30"><div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/40 rounded-full filter blur-3xl"></div><div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sky-400/40 rounded-full filter blur-3xl"></div></div>
-      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 25% 25%, white 1px, transparent 1px); background-size: 50px 50px;"></div>
-      <div class="text-center max-w-6xl mx-auto relative z-10">
-        <div class="text-5xl sm:text-6xl md:text-8xl mb-6 sm:mb-8 animate-elegant-float reveal">🦶</div>
-        <h1 class="elegant-title text-4xl sm:text-5xl md:text-6xl lg:text-8xl mb-6 bg-gradient-to-r from-blue-300 via-sky-200 to-blue-100 bg-clip-text text-transparent reveal" data-delay="100">{siteData.hero.name}</h1>
-        <div class="elegant-divider bg-sky-300 reveal" data-delay="200"></div>
-        <p class="elegant-subtitle text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 text-sky-200 reveal" data-delay="300">{siteData.hero.title}</p>
-        <p class="elegant-body text-base md:text-lg lg:text-xl text-blue-200/80 mb-10 sm:mb-12 reveal" data-delay="400">📍 {siteData.hero.location}</p>
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-md sm:max-w-lg mx-auto justify-center reveal" data-delay="500">
-          <a href={siteData.hero.doctolibUrl} target="_blank" rel="noopener noreferrer" class="elegant-button bg-blue-500/80 hover:bg-blue-500 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base">📅 Prendre RDV sur Doctolib</a>
-          <a href={siteData.hero.phoneUrl} class="elegant-button bg-white/10 hover:bg-white/20 border border-white/30 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base">📞 Contacter le Cabinet</a>
-        </div>
+    <!-- SECTION HERO - Design épuré exactement comme la maquette -->
+    <section class="snap-section h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
+      <!-- Arrière-plan subtil -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-slate-900/10"></div>
       </div>
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-sky-300/80"><div class="elegant-body text-sm animate-pulse">⬇️ Découvrir nos services</div></div>
+      
+      <!-- Contenu principal -->
+      <div class="text-center max-w-md mx-auto relative z-10 space-y-8">
+        
+        <!-- Logo/Icône dans un cercle -->
+        <div class="relative mx-auto w-32 h-32 sm:w-36 sm:h-36 reveal">
+          <div class="w-full h-full  border-blue-400/30 flex items-center justify-center backdrop-blur-sm">
+            <img src="pied2.png" alt="Logo Rémi Pradère" class="w-32 h-32 rounded-full border-2 sm:w-24 sm:h-24 object-cover rounded-full">
+            <!-- <Icon 
+              name="mdi:foot-print" 
+              class="w-16 h-16 sm:w-18 sm:h-18 text-yellow-400 hover:text-yellow-300 transition-colors duration-300" 
+            /> -->
+          </div>
+        </div>
+        
+        <!-- Nom principal -->
+        <h1 class="elegant-title text-3xl sm:text-4xl md:text-5xl font-normal text-white mb-6 reveal" data-delay="100">
+          {siteData.hero.name}
+        </h1>
+        
+        <!-- Séparateur décoratif -->
+        <div class="flex items-center justify-center mb-8 reveal" data-delay="200">
+          <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+        </div>
+        
+        <!-- Titre professionnel -->
+        <p class="elegant-subtitle text-base sm:text-lg font-light text-yellow-400 tracking-wider uppercase mb-8 reveal" data-delay="300">
+          Pédicure-Podologue D.E
+        </p>
+        
+        <!-- Card de localisation -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-6 border border-white/10 mb-2 reveal" data-delay="400">
+          <div class="flex items-center text-white">
+            <Icon name="mdi:map-marker" class="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+            <div class="text-left">
+              <div class="text-base sm:text-lg font-medium">Cabinet à Condom</div>
+              <!-- <div class="text-sm text-blue-200">(Gers, 32)</div> -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bouton Doctolib principal -->
+        <div class="reveal mb-2" data-delay="500">
+          <a href={siteData.hero.doctolibUrl} 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
+            <Icon name="mdi:calendar-clock" class="w-6 h-6 mr-3 flex-shrink-0" />
+            <span class="text-left">Prendre RDV Doctolib</span>
+          </a>
+        </div>
+        
+        <!-- Bouton téléphone secondaire -->
+        <div class="reveal" data-delay="600">
+          <a href={siteData.hero.phoneUrl} 
+             class="w-full bg-transparent border-2 border-white/20 hover:border-white/40 hover:bg-white/5 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 flex items-center">
+            <Icon name="mdi:phone" class="w-6 h-6 mr-3 flex-shrink-0" />
+            <span class="text-left">Appeler le cabinet</span>
+          </a>
+        </div>
+        
+      </div>
     </section>
 
+    <!-- SECTION SERVICES -->
     <section class="snap-section min-h-screen lg:h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-sky-400 text-white flex items-center py-20 px-4 sm:px-6">
       <div class="max-w-7xl w-full mx-auto text-center">
         <h2 class="elegant-title text-3xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 reveal">Nos <span class="text-blue-100">Services</span></h2>
@@ -78,7 +145,9 @@ const siteData = {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {siteData.services.map((service, index) => (
             <div class={`elegant-card bg-white/15 rounded-3xl p-6 md:p-8 lg:p-10 text-center reveal`} data-delay={300 + index * 100}>
-              <div class="text-5xl lg:text-6xl mb-6">{service.icon}</div>
+              <div class="mb-6">
+                <Icon name={service.icon} class="w-16 h-16 lg:w-20 lg:h-20 mx-auto text-yellow-300" />
+              </div>
               <h3 class="elegant-subtitle text-xl lg:text-3xl font-semibold mb-4 text-white">{service.title}</h3>
               <p class="elegant-body text-base text-blue-100/90 leading-relaxed">{service.fullDesc}</p>
             </div>
@@ -87,6 +156,7 @@ const siteData = {
       </div>
     </section>
 
+    <!-- SECTION EXPERTISES SPÉCIALISÉES -->
     <section class="snap-section min-h-screen lg:h-screen bg-gradient-to-br from-sky-400 via-blue-200 to-white flex items-center py-20 px-4 sm:px-6">
       <div class="max-w-7xl w-full mx-auto text-center">
         <h2 class="elegant-title text-3xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 reveal">Expertises <span class="text-blue-600">Spécialisées</span></h2>
@@ -97,7 +167,9 @@ const siteData = {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {siteData.specializedServices.map((service, index) => (
             <div class={`elegant-card bg-white/70 rounded-2xl sm:rounded-3xl p-6 text-left reveal`} data-delay={300 + index * 100}>
-              <div class="text-3xl sm:text-4xl mb-4">{service.icon}</div>
+              <div class="mb-4">
+                <Icon name={service.icon} class="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+              </div>
               <h3 class="elegant-subtitle text-lg sm:text-xl lg:text-2xl font-semibold mb-3">{service.title}</h3>
               <p class="elegant-body text-sm text-slate-600 leading-relaxed">{service.desc}</p>
             </div>
@@ -106,57 +178,124 @@ const siteData = {
       </div>
     </section>
 
+    <!-- SECTION INFORMATIONS PRATIQUES -->
     <section class="snap-section min-h-screen lg:h-screen bg-gradient-to-br from-white to-blue-50 flex items-center py-20 px-4 sm:px-6">
       <div class="max-w-7xl w-full mx-auto text-center">
         <h2 class="elegant-title text-3xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 reveal">Informations <span class="text-blue-600">Pratiques</span></h2>
         <div class="elegant-divider bg-slate-600 reveal" data-delay="100"></div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
           <div class="elegant-card bg-white/80 rounded-3xl p-6 md:p-8 lg:p-10 reveal" data-delay="200">
-            <div class="text-4xl mb-6">💳</div>
+            <div class="mb-6">
+              <Icon name="mdi:credit-card" class="w-12 h-12 mx-auto text-green-600" />
+            </div>
             <h3 class="elegant-subtitle text-xl md:text-2xl lg:text-3xl font-semibold mb-6">Tarification</h3>
             <div class="space-y-4 text-left">
-              <div class="flex items-center bg-green-50/80 rounded-xl p-3 sm:p-4"><span class="text-2xl mr-4 text-green-600">✅</span><div><div class="font-medium text-sm sm:text-base">Conventionné Secteur 1</div><div class="text-xs sm:text-sm text-slate-600">Tarifs de base Sécurité Sociale</div></div></div>
-              <div class="flex items-center bg-amber-50/80 rounded-xl p-3 sm:p-4"><span class="text-2xl mr-4 text-amber-600">⚠️</span><div><div class="font-medium text-sm sm:text-base">Carte Vitale non acceptée</div><div class="text-xs sm:text-sm text-slate-600">Paiement chèque ou espèces</div></div></div>
+              <div class="flex items-center bg-green-50/80 rounded-xl p-3 sm:p-4">
+                <Icon name="mdi:check-circle" class="w-6 h-6 mr-4 text-green-600 flex-shrink-0" />
+                <div>
+                  <div class="font-medium text-sm sm:text-base">Conventionné Secteur 1</div>
+                  <div class="text-xs sm:text-sm text-slate-600">Tarifs de base Sécurité Sociale</div>
+                </div>
+              </div>
+              <div class="flex items-center bg-amber-50/80 rounded-xl p-3 sm:p-4">
+                <Icon name="mdi:alert-circle" class="w-6 h-6 mr-4 text-amber-600 flex-shrink-0" />
+                <div>
+                  <div class="font-medium text-sm sm:text-base">Carte Vitale non acceptée</div>
+                  <div class="text-xs sm:text-sm text-slate-600">Paiement chèque ou espèces</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="elegant-card bg-white/80 rounded-3xl p-6 md:p-8 lg:p-10 reveal" data-delay="300">
-            <div class="text-4xl mb-6">🏢</div>
+            <div class="mb-6">
+              <Icon name="mdi:hospital-building" class="w-12 h-12 mx-auto text-blue-600" />
+            </div>
             <h3 class="elegant-subtitle text-xl md:text-2xl lg:text-3xl font-semibold mb-6">Cabinet</h3>
             <div class="space-y-4 text-left text-sm sm:text-base">
-              <div class="bg-blue-50/80 rounded-xl p-3 sm:p-4"><div class="font-medium mb-2">📍 Adresse</div><p>{siteData.contact.address}<br/>{siteData.contact.city}</p></div>
-              <div class="bg-blue-50/80 rounded-xl p-3 sm:p-4"><div class="font-medium mb-2">Structure</div><p>Cabinet pluridisciplinaire</p></div>
+              <div class="bg-blue-50/80 rounded-xl p-3 sm:p-4">
+                <div class="font-medium mb-2 flex items-center">
+                  <Icon name="mdi:map-marker" class="w-4 h-4 mr-2 flex-shrink-0" />
+                  Adresse
+                </div>
+                <p>{siteData.contact.address}<br/>{siteData.contact.city}</p>
+              </div>
+              <div class="bg-blue-50/80 rounded-xl p-3 sm:p-4">
+                <div class="font-medium mb-2">Structure</div>
+                <p>Cabinet pluridisciplinaire</p>
+              </div>
             </div>
           </div>
           <div class="elegant-card bg-white/80 rounded-3xl p-6 md:p-8 lg:p-10 reveal" data-delay="400">
-            <div class="text-4xl mb-6">📱</div>
+            <div class="mb-6">
+              <Icon name="mdi:phone" class="w-12 h-12 mx-auto text-green-600" />
+            </div>
             <h3 class="elegant-subtitle text-xl md:text-2xl lg:text-3xl font-semibold mb-6">Contact</h3>
             <div class="space-y-3 sm:space-y-4">
-              <a href={siteData.hero.doctolibUrl} target="_blank" rel="noopener noreferrer" class="elegant-button bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl block text-sm sm:text-base">💻 Doctolib</a>
-              <a href={siteData.hero.phoneUrl} class="elegant-button bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl block text-sm sm:text-base">📞 {siteData.contact.phone}</a>
+              <a href={siteData.hero.doctolibUrl} target="_blank" rel="noopener noreferrer" class="elegant-button bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl flex items-center text-sm sm:text-base">
+                <Icon name="mdi:web" class="w-5 h-5 mr-3 flex-shrink-0" />
+                <span>Doctolib</span>
+              </a>
+              <a href={siteData.hero.phoneUrl} class="elegant-button bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl flex items-center text-sm sm:text-base">
+                <Icon name="mdi:phone" class="w-5 h-5 mr-3 flex-shrink-0" />
+                <span>{siteData.contact.phone}</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION CONTACT FINAL -->
     <section class="snap-section h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
-      <div class="absolute inset-0 opacity-20"><div class="absolute top-1/3 left-1/3 w-96 h-96 bg-blue-500/40 rounded-full filter blur-3xl"></div><div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-sky-400/40 rounded-full filter blur-3xl"></div></div>
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/3 left-1/3 w-96 h-96 bg-blue-500/40 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/3 w-80 h-80 bg-sky-400/40 rounded-full filter blur-3xl"></div>
+      </div>
       <div class="text-center max-w-4xl mx-auto relative z-10">
         <h2 class="elegant-title text-3xl md:text-5xl lg:text-6xl mb-6 reveal">Prenez <span class="bg-gradient-to-r from-blue-300 via-sky-200 to-blue-100 bg-clip-text text-transparent">Rendez-vous</span></h2>
         <div class="elegant-divider bg-sky-300 reveal" data-delay="100"></div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-10 sm:mb-12">
           <div class="elegant-card bg-white/10 rounded-2xl p-6 text-sm sm:text-base reveal" data-delay="200">
-            <h3 class="elegant-subtitle text-lg sm:text-xl font-semibold mb-4">📍 Notre Adresse</h3>
-            <div class="elegant-body text-blue-200"><p class="font-medium">Cabinet Martin Pradère</p><p>{siteData.contact.address}</p><p>{siteData.contact.city}</p></div>
+            <h3 class="elegant-subtitle text-lg sm:text-xl font-semibold mb-4 flex items-center">
+              <Icon name="mdi:map-marker" class="w-6 h-6 mr-3 flex-shrink-0" />
+              <span>Notre Adresse</span>
+            </h3>
+            <div class="elegant-body text-blue-200 text-left ml-9">
+              <p class="font-medium">Cabinet Martin Pradère</p>
+              <p>{siteData.contact.address}</p>
+              <p>{siteData.contact.city}</p>
+            </div>
           </div>
           <div class="elegant-card bg-white/10 rounded-2xl p-6 text-sm sm:text-base reveal" data-delay="300">
-            <h3 class="elegant-subtitle text-lg sm:text-xl font-semibold mb-4">ℹ️ Informations</h3>
-            <div class="elegant-body text-blue-200 space-y-2 text-left"><p>✅ Sans prescription médicale</p><p>✅ Consultation trilingue (FR/EN/ES)</p><p>✅ Conventionné Secteur 1</p></div>
+            <h3 class="elegant-subtitle text-lg sm:text-xl font-semibold mb-4 flex items-center">
+              <Icon name="mdi:information" class="w-6 h-6 mr-3 flex-shrink-0" />
+              <span>Informations</span>
+            </h3>
+            <div class="elegant-body text-blue-200 space-y-2 text-left ml-9">
+              <p class="flex items-center">
+                <Icon name="mdi:check" class="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                <span>Sans prescription médicale</span>
+              </p>
+              <p class="flex items-center">
+                <Icon name="mdi:check" class="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                <span>Consultation trilingue (FR/EN/ES)</span>
+              </p>
+              <p class="flex items-center">
+                <Icon name="mdi:check" class="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                <span>Conventionné Secteur 1</span>
+              </p>
+            </div>
           </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center reveal" data-delay="400">
-          <a href={siteData.hero.doctolibUrl} target="_blank" rel="noopener noreferrer" class="elegant-button bg-blue-500/80 hover:bg-blue-500 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base">📅 Réserver sur Doctolib</a>
-          <a href={siteData.hero.phoneUrl} class="elegant-button bg-green-600/80 hover:bg-green-600 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base">📞 Appeler : {siteData.contact.phone}</a>
+          <a href={siteData.hero.doctolibUrl} target="_blank" rel="noopener noreferrer" class="elegant-button bg-blue-500/80 hover:bg-blue-500 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base flex items-center justify-center">
+            <Icon name="mdi:calendar-plus" class="w-5 h-5 mr-3 flex-shrink-0" />
+            <span>Réserver sur Doctolib</span>
+          </a>
+          <a href={siteData.hero.phoneUrl} class="elegant-button bg-green-600/80 hover:bg-green-600 px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base flex items-center justify-center">
+            <Icon name="mdi:phone" class="w-5 h-5 mr-3 flex-shrink-0" />
+            <span>Appeler : {siteData.contact.phone}</span>
+          </a>
         </div>
       </div>
     </section>
@@ -181,19 +320,23 @@ const siteData = {
   .snap-section { 
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    width: 100%; /* Empêche les débordements horizontaux */
+    width: 100%;
   }
   
-  .elegant-title { font-family: 'Playfair Display', serif; }
-  .elegant-subtitle { font-family: 'Cormorant Garamond', serif; }
-  .elegant-body { font-family: 'Inter', sans-serif; }
-  
-  @keyframes elegant-float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+  .elegant-title { 
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
-  .animate-elegant-float { animation: elegant-float 6s ease-in-out infinite; }
-
+  .elegant-subtitle { 
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+  .elegant-body { 
+    font-family: 'Inter', sans-serif; 
+  }
+  
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -222,6 +365,27 @@ const siteData = {
     width: 60px;
     height: 2px;
     margin: 1.5rem auto;
+  }
+
+  /* Animation des icônes */
+  [data-icon] {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .reveal:hover [data-icon] {
+    transform: scale(1.1);
+  }
+
+  /* Alignement gauche pour les boutons */
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .max-w-md {
+      max-width: 100%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
