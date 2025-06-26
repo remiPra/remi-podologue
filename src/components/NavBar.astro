@@ -1,0 +1,181 @@
+---
+export interface Props {
+  logoText?: string;
+  logoImage?: string;
+}
+
+// logoText et logoImage ne sont plus utilisés dans la barre du haut,
+// mais on les garde s'ils servent ailleurs sur la page.
+const { 
+  logoText = "R. Pradère",
+  logoImage 
+} = Astro.props;
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50  ">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-end items-center h-16">
+      
+      <button 
+        id="navbar-drawer-toggle" 
+        class="relative text-white text-bold hover:text-blue-300 transition-colors p-2 z-50"
+        aria-label="Ouvrir le menu de navigation"
+        aria-expanded="false"
+        aria-controls="navbar-drawer"
+      >
+        <div class="navbar-hamburger-icon">
+          <span class="navbar-hamburger-line"></span>
+          <span class="navbar-hamburger-line"></span>
+          <span class="navbar-hamburger-line"></span>
+        </div>
+      </button>
+      
+    </div>
+  </div>
+</nav>
+
+<div id="navbar-drawer-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300"></div>
+
+<div 
+  id="navbar-drawer" 
+  class="fixed top-0 right-0 h-full w-80 max-w-[90vw] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out z-50 flex flex-col
+         bg-slate-900" role="dialog"
+  aria-modal="true"
+  aria-hidden="true"
+  aria-labelledby="drawer-title"
+>
+  
+  <div class="bg-transparent p-6 text-white flex-shrink-0 border-b border-white/10">
+    <div class="flex items-center justify-between mb-4">
+      <h3 id="drawer-title" class="text-xl font-semibold">Menu</h3>
+      <button id="navbar-drawer-close" class="text-white/80 hover:text-white transition-colors p-1" aria-label="Fermer le menu de navigation">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="flex items-center space-x-3">
+       <div>
+        <p class="font-medium">Rémi Pradère</p>
+        <p class="text-sm text-slate-300">Pédicure-Podologue</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-grow overflow-y-auto p-6">
+    <nav class="space-y-3" aria-label="Navigation principale du site">
+      
+      <a href="#hero" class="navbar-drawer-nav-item group">
+        <div class="flex items-center p-4 rounded-xl bg-slate-800/70 hover:bg-slate-700 transition-all duration-200 group-hover:shadow-md group-hover:scale-105">
+          <div class="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center mr-4 group-hover:bg-blue-500 transition-colors">
+            <svg class="w-5 h-5 text-slate-200 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </div>
+          <div>
+            <span class="font-medium text-slate-100">Accueil</span>
+            <p class="text-xs text-slate-400">Retour à l'accueil</p>
+          </div>
+        </div>
+      </a>
+      
+      <a href="#services" class="navbar-drawer-nav-item group">
+        <div class="flex items-center p-4 rounded-xl bg-slate-800/70 hover:bg-slate-700 transition-all duration-200 group-hover:shadow-md group-hover:scale-105">
+          <div class="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center mr-4 group-hover:bg-green-500 transition-colors">
+            <svg class="w-5 h-5 text-slate-200 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <span class="font-medium text-slate-100">Services</span>
+            <p class="text-xs text-slate-400">Nos soins principaux</p>
+          </div>
+        </div>
+      </a>
+
+      </nav>
+
+    <div class="border-t border-slate-700 my-6"></div>
+
+    <div class="space-y-3">
+      <a href="tel:0562682580" class="block">
+        <div class="flex items-center p-4 bg-gradient-to-r from-green-500 to-green-600 rounded-xl text-white hover:from-green-600 hover:to-green-700 transition-all duration-200 hover:shadow-lg hover:scale-105">
+           <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <div>
+            <span class="font-semibold">Appeler maintenant</span>
+            <p class="text-xs text-green-100">05 62 68 25 80</p>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.doctolib.fr/pedicure-podologue/condom/remi-pradere" target="_blank" rel="noopener noreferrer" class="block">
+        <div class="flex items-center p-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105">
+          <svg class="w-6 h-6 mr-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+          <div>
+            <span class="font-semibold">Prendre RDV</span>
+            <p class="text-xs text-blue-100">Via Doctolib</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-6 p-4 bg-slate-800 rounded-xl">
+      <h4 class="font-medium text-slate-100 mb-2 flex items-center">
+        <svg class="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Cabinet
+      </h4>
+      <p class="text-sm text-slate-300">4 Rue Honoré Cazaubon</p>
+      <p class="text-sm text-slate-300">32100 Condom, Gers</p>
+    </div>
+  </div>
+
+</div>
+
+
+<style>
+  /* Le CSS reste inchangé */
+  .navbar-hamburger-icon{width:24px;height:18px;position:relative;cursor:pointer}.navbar-hamburger-line{display:block;width:100%;height:2px;background-color:currentColor;border-radius:1px;position:absolute;transition:all .3s cubic-bezier(.25,.46,.45,.94)}.navbar-hamburger-line:nth-child(1){top:0}.navbar-hamburger-line:nth-child(2){top:8px}.navbar-hamburger-line:nth-child(3){top:16px}.navbar-hamburger-active .navbar-hamburger-line:nth-child(1){transform:rotate(45deg);top:8px}.navbar-hamburger-active .navbar-hamburger-line:nth-child(2){opacity:0}.navbar-hamburger-active .navbar-hamburger-line:nth-child(3){transform:rotate(-45deg);top:8px}.navbar-overlay-visible{opacity:1!important;visibility:visible!important}
+</style>
+
+<script>
+  // Le script JavaScript reste inchangé, la logique est toujours bonne
+  document.addEventListener('DOMContentLoaded', () => {
+    const drawerToggle = document.getElementById('navbar-drawer-toggle');
+    const drawerClose = document.getElementById('navbar-drawer-close');
+    const drawer = document.getElementById('navbar-drawer');
+    const overlay = document.getElementById('navbar-drawer-overlay');
+    if (!drawerToggle || !drawerClose || !drawer || !overlay) return;
+    const hamburgerIcon = drawerToggle.querySelector('.navbar-hamburger-icon');
+    function openDrawer() {
+      overlay.classList.add('navbar-overlay-visible');
+      hamburgerIcon?.classList.add('navbar-hamburger-active');
+      drawer.classList.remove('translate-x-full');
+      drawer.classList.add('translate-x-0');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawerToggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      drawerClose.focus();
+    }
+    function closeDrawer() {
+      overlay.classList.remove('navbar-overlay-visible');
+      hamburgerIcon?.classList.remove('navbar-hamburger-active');
+      drawer.classList.remove('translate-x-0');
+      drawer.classList.add('translate-x-full');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawerToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      drawerToggle.focus();
+    }
+    drawerToggle.addEventListener('click', () => {
+      if (drawer.classList.contains('translate-x-0')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('translate-x-0')) {
+        closeDrawer();
+      }
+    });
+    const navLinks = drawer.querySelectorAll('.navbar-drawer-nav-item');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+  });
+</script>

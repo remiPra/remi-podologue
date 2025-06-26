@@ -2,6 +2,7 @@
 // Fichier Astro avec design responsive optimisé desktop + mobile
 
 export const prerender = true;
+import NavBar from "../components/NavBar.astro";
 import "../styles/global.css";
 import { Icon } from 'astro-icon/components';
 
@@ -64,6 +65,7 @@ const siteData = {
 <body class="bg-slate-900 font-inter text-slate-800">
 
   <main>
+    <NavBar  logoText="R. Pradère" />
     <!-- SECTION HERO - Design responsive mobile/desktop -->
     <section class="snap-section h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
       <!-- Arrière-plan subtil -->
