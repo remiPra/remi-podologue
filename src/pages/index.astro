@@ -1,5 +1,5 @@
 ---
-// Fichier Astro avec stratégie responsive avancée et icônes
+// Fichier Astro avec design responsive optimisé desktop + mobile
 
 export const prerender = true;
 import "../styles/global.css";
@@ -64,71 +64,130 @@ const siteData = {
 <body class="bg-slate-900 font-inter text-slate-800">
 
   <main>
-    <!-- SECTION HERO - Design épuré exactement comme la maquette -->
+    <!-- SECTION HERO - Design responsive mobile/desktop -->
     <section class="snap-section h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white flex items-center justify-center relative overflow-hidden px-4 sm:px-6">
       <!-- Arrière-plan subtil -->
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-slate-900/10"></div>
       </div>
       
-      <!-- Contenu principal -->
-      <div class="text-center max-w-md mx-auto relative z-10 space-y-8">
+      <!-- Contenu principal - Layout responsive -->
+      <div class="relative z-10 w-full max-w-6xl mx-auto">
         
-        <!-- Logo/Icône dans un cercle -->
-        <div class="relative mx-auto w-32 h-32 sm:w-36 sm:h-36 reveal">
-          <div class="w-full h-full  border-blue-400/30 flex items-center justify-center backdrop-blur-sm">
-            <img src="pied2.png" alt="Logo Rémi Pradère" class="w-32 h-32 rounded-full border-2 sm:w-24 sm:h-24 object-cover rounded-full">
-            <!-- <Icon 
-              name="mdi:foot-print" 
-              class="w-16 h-16 sm:w-18 sm:h-18 text-yellow-400 hover:text-yellow-300 transition-colors duration-300" 
-            /> -->
+        <!-- Version Mobile (md et moins) -->
+        <div class="md:hidden text-center space-y-8">
+          <!-- Logo mobile -->
+          <div class="relative mx-auto w-32 h-32 reveal">
+            <div class="w-full h-full border-blue-400/30 flex items-center justify-center backdrop-blur-sm">
+              <img src="pied2.png" alt="Logo Rémi Pradère" class="w-32 h-32 rounded-full border-2 object-cover">
+            </div>
           </div>
-        </div>
-        
-        <!-- Nom principal -->
-        <h1 class="elegant-title text-3xl sm:text-4xl md:text-5xl font-normal text-white mb-6 reveal" data-delay="100">
-          {siteData.hero.name}
-        </h1>
-        
-        <!-- Séparateur décoratif -->
-        <div class="flex items-center justify-center mb-8 reveal" data-delay="200">
-          <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
-        </div>
-        
-        <!-- Titre professionnel -->
-        <p class="elegant-subtitle text-base sm:text-lg font-light text-yellow-400 tracking-wider uppercase mb-8 reveal" data-delay="300">
-          Pédicure-Podologue D.E
-        </p>
-        
-        <!-- Card de localisation -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-4 sm:p-6 border border-white/10 mb-2 reveal" data-delay="400">
-          <div class="flex items-center text-white">
-            <Icon name="mdi:map-marker" class="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
-            <div class="text-left">
-              <div class="text-base sm:text-lg font-medium">Cabinet à Condom</div>
-              <!-- <div class="text-sm text-blue-200">(Gers, 32)</div> -->
+          
+          <!-- Contenu mobile -->
+          <h1 class="elegant-title text-3xl sm:text-4xl font-normal text-white mb-6 reveal" data-delay="100">
+            {siteData.hero.name}
+          </h1>
+          
+          <div class="flex items-center justify-center mb-8 reveal" data-delay="200">
+            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+          </div>
+          
+          <p class="elegant-subtitle text-base font-light text-yellow-400 tracking-wider uppercase mb-8 reveal" data-delay="300">
+            Pédicure-Podologue D.E
+          </p>
+          
+          <!-- Card localisation mobile -->
+          <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-4 border border-white/10 mb-2 reveal" data-delay="400">
+            <div class="flex items-center justify-center text-white">
+              <Icon name="mdi:map-marker" class="w-5 h-5 mr-3 text-blue-300 flex-shrink-0" />
+              <div class="text-center">
+                <div class="text-base font-medium">Cabinet à Condom</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Boutons mobile -->
+          <div class="space-y-3">
+            <div class="reveal" data-delay="500">
+              <a href={siteData.hero.doctolibUrl} 
+                 target="_blank" 
+                 rel="noopener noreferrer" 
+                 class="w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
+                <Icon name="mdi:calendar-clock" class="w-6 h-6 mr-3 flex-shrink-0" />
+                <span class="text-left">Prendre RDV Doctolib</span>
+              </a>
+            </div>
+            
+            <div class="reveal" data-delay="600">
+              <a href={siteData.hero.phoneUrl} 
+                 class="w-full bg-transparent border-2 border-white/20 hover:border-white/40 hover:bg-white/5 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 flex items-center">
+                <Icon name="mdi:phone" class="w-6 h-6 mr-3 flex-shrink-0" />
+                <span class="text-left">Appeler le cabinet</span>
+              </a>
             </div>
           </div>
         </div>
-        
-        <!-- Bouton Doctolib principal -->
-        <div class="reveal mb-2" data-delay="500">
-          <a href={siteData.hero.doctolibUrl} 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="w-full bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center">
-            <Icon name="mdi:calendar-clock" class="w-6 h-6 mr-3 flex-shrink-0" />
-            <span class="text-left">Prendre RDV Doctolib</span>
-          </a>
-        </div>
-        
-        <!-- Bouton téléphone secondaire -->
-        <div class="reveal" data-delay="600">
-          <a href={siteData.hero.phoneUrl} 
-             class="w-full bg-transparent border-2 border-white/20 hover:border-white/40 hover:bg-white/5 text-white px-6 py-4 rounded-3xl font-medium text-base transition-all duration-300 flex items-center">
-            <Icon name="mdi:phone" class="w-6 h-6 mr-3 flex-shrink-0" />
-            <span class="text-left">Appeler le cabinet</span>
-          </a>
+
+        <!-- Version Desktop (md et plus) -->
+        <div class="hidden md:grid md:grid-cols-2 md:gap-16 lg:gap-24 items-center">
+          
+          <!-- Colonne gauche - Contenu texte -->
+          <div class="text-left space-y-8">
+            <div class="space-y-6">
+              <h1 class="elegant-title text-4xl lg:text-6xl xl:text-7xl font-normal text-white reveal">
+                {siteData.hero.name}
+              </h1>
+              
+              <div class="flex items-center mb-6 reveal" data-delay="100">
+                <div class="w-2 h-2 bg-blue-400 rounded-full mr-4"></div>
+                <p class="elegant-subtitle text-lg lg:text-xl font-light text-yellow-400 tracking-wider uppercase">
+                  Pédicure-Podologue D.E
+                </p>
+              </div>
+              
+              <!-- Card localisation desktop -->
+              <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 reveal" data-delay="200">
+                <div class="flex items-center text-white">
+                  <Icon name="mdi:map-marker" class="w-6 h-6 mr-4 text-blue-300 flex-shrink-0" />
+                  <div>
+                    <div class="text-lg font-medium">Cabinet à Condom</div>
+                    <div class="text-sm text-blue-200">(Gers, 32)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Boutons desktop -->
+            <div class="space-y-4">
+              <div class="reveal" data-delay="300">
+                <a href={siteData.hero.doctolibUrl} 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="inline-flex items-center bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-medium text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                  <Icon name="mdi:calendar-clock" class="w-6 h-6 mr-4 flex-shrink-0" />
+                  <span>Prendre rendez-vous sur Doctolib</span>
+                </a>
+              </div>
+              
+              <div class="reveal" data-delay="400">
+                <a href={siteData.hero.phoneUrl} 
+                   class="inline-flex items-center bg-transparent border-2 border-white/20 hover:border-white/40 hover:bg-white/5 text-white px-8 py-4 rounded-2xl font-medium text-lg transition-all duration-300">
+                  <Icon name="mdi:phone" class="w-6 h-6 mr-4 flex-shrink-0" />
+                  <span>Appeler le cabinet : {siteData.contact.phone}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Colonne droite - Logo -->
+          <div class="flex justify-center lg:justify-end">
+            <div class="relative w-48 h-48 lg:w-64 lg:h-64 xl:w-80 xl:h-80 reveal" data-delay="500">
+              <div class="w-full h-full rounded-full border-2 border-blue-400/30 flex items-center justify-center backdrop-blur-sm hover:border-blue-400/50 transition-all duration-300">
+                <img src="pied2.png" alt="Logo Rémi Pradère" class="w-44 h-44 lg:w-56 lg:h-56 xl:w-72 xl:h-72 rounded-full border-2 border-white/10 object-cover hover:scale-105 transition-transform duration-300">
+              </div>
+            </div>
+          </div>
+          
         </div>
         
       </div>
